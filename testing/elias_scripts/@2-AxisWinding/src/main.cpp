@@ -130,7 +130,7 @@ AccelStepper carriage(AccelStepper::DRIVER, CARRIAGE_STEP, CARRIAGE_DIR);  //sam
 
 void setup() {
     Serial.begin(115200);
-
+    
     // Initialize Motors
     pinMode(CARRIAGE_LIMIT, INPUT_PULLUP);
 
@@ -146,6 +146,12 @@ void setup() {
     
     // SET MAN D (Your global variable used in math)
     manD = 55.0;
+
+    void loop() {
+    // runSpeed() does not use acceleration or targets. 
+    // It just pulses the pin at the speed defined by setSpeed().
+    mandrel.runSpeed();
+    carriage.runSpeed();
 
     // 5. FORCE STATE TO ZEROING
     currentState = ZEROING;
